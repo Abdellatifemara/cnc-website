@@ -209,6 +209,8 @@ body.menu-open .menu a:nth-child(6) { transition-delay: 0.3s; }
 body.menu-open .nav { color: var(--black) !important; text-shadow: none !important; }
 
 @media (max-width: 900px) {
+  :root { --frame: 0px; }
+  .frame { display: none; }
   .nav { padding: 14px 16px; }
   .nav ul li { display: none; }
   .nav ul li.lang { display: block; }
@@ -221,7 +223,7 @@ body.menu-open .nav { color: var(--black) !important; text-shadow: none !importa
 .film {
   position: sticky;
   top: 0;
-  height: 100vh; height: 100svh;
+  height: 100vh; height: 100dvh;
   overflow: hidden;
   background: #000;
 }

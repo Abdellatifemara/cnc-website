@@ -9,8 +9,10 @@ const TYPES = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascrip
 http.createServer((req, res) => {
   let p = decodeURIComponent(req.url.split('?')[0]);
   if (p === '/') p = '/index.html';
-  const file = path.join(ROOT, p);
-  if (!file.startsWith(ROOT) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) {
+  let file = path.join(ROOT, p);
+  if (fs.existsSync(file) && fs.statSync(file).isDirectory()) file = path.join(file, 'index.html');
+  if (!fs.existsSync(file) && fs.existsSync(file + '.html')) file = file + '.html';
+  if (!file.startsWith(ROOT) || !fs.existsSync(file)) {
     res.writeHead(404); res.end('404'); return;
   }
   const size = fs.statSync(file).size;
